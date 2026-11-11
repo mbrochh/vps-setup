@@ -2,7 +2,9 @@
 
 This script is to provision and lock down a Debian VPS.
 
-The firewall closes all ports. In order to server traffic, we shall use a Cloudflare tunnel.
+The firewall closes all ports. 
+
+In order to serve traffic, we shall use a Cloudflare tunnel.
 
 In order to SSH into the machine, we shall use Tailscale.
 
