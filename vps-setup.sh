@@ -108,12 +108,21 @@ setopt share_history hist_ignore_dups
 autoload -Uz compinit && compinit
 PROMPT='%n@%m:%~%# '
 
+# zoxide (must come after compinit)
+eval "$(zoxide init zsh)"
+
+# Prefix history search on up/down arrows
+autoload -U up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[OA' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+bindkey '^[OB' down-line-or-beginning-search
+
 # Plugins
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# zoxide (must come after compinit)
-eval "$(zoxide init zsh)"
 # <<< vps-setup <<<
 EOF
 ok "shared zsh config written to $ZSHRC"
