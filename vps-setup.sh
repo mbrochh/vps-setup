@@ -153,6 +153,9 @@ install -d -m 700 -o "$ADMIN_USER" -g "$ADMIN_USER" "/home/$ADMIN_USER/.ssh"
 install -m 600 -o "$ADMIN_USER" -g "$ADMIN_USER" /root/.ssh/authorized_keys "/home/$ADMIN_USER/.ssh/authorized_keys"
 sudo -u "$ADMIN_USER" touch "/home/$ADMIN_USER/.zshrc"
 chmod 700 "/home/$ADMIN_USER"
+echo "$ADMIN_USER ALL=($AGENT_USER) NOPASSWD: ALL" > /etc/sudoers.d/admin-as-agent
+chmod 440 /etc/sudoers.d/admin-as-agent
+visudo -cf /etc/sudoers.d/admin-as-agent || die "sudoers syntax error"
 ok "SSH keys copied from root, sudo granted"
 
 # ---------------------------------------------------------------- agent user
