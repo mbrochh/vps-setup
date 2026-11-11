@@ -2,13 +2,22 @@
 
 This script is to provision and lock down a Debian VPS.
 
-The firewall closes all ports. 
+What it does:
 
-In order to serve traffic, we shall use a Cloudflare tunnel.
+- enable automatic security updates (you still need to reboot yourself)
+- installs Zsh, makes it default shell
+- install zoxide
+- adds user admin (sudo user)
+- adds user pi (not sudo user)
+- installs Tailscale
+- disables sshd password logins
+- enables ufw, only allows inbound traffic from Tailscale
+- disables root SSH login
 
-In order to SSH into the machine, we shall use Tailscale.
+Note: You might not need the `pi` user. I use it to install agents under that user.
+You can also change the variable `AGENT_USER` in the script and give it another i
+name if you like.
 
-It also creates a user admin (which can sudo) and a user pi (which cannot sudo).
 
 # Tailscale Policy
 
